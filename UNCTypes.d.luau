@@ -68,13 +68,17 @@ declare class Triangle extends BaseDrawing
 end
 
 declare Drawing: {
-	new: ((type: DrawingType) -> BaseDrawing),
+	new: ((Type: "Line") -> (Line)) 
+        & ((Type: "Text") -> (Text))
+        & ((Type: "Image") -> (Image))
+        & ((Type: "Circle") -> (Circle))
+        & ((Type: "Square") -> (Square))
+        & ((Type: "Triangle") -> (Triangle))
+        & ((Type: "Quad") -> (Quad)),
 	Fonts: { [string]: number },
 }
 
-type Drawing = Line | Text | Image | Circle | Square | Quad | Triangle
-
-type DrawingType = "Line" | "Text" | "Image" | "Circle" | "Square" | "Quad" | "Triangle"
+export type Drawing = Line | Text | Image | Circle | Square | Quad | Triangle
 
 declare function cleardrawcache(): ()
 declare function getrenderproperty(drawing: Drawing, property: string): any
